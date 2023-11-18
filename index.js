@@ -33,7 +33,7 @@ database.once('connected', () => {
 
 app.listen(
     process.env.PORT || PORTLOCAL,
-    console.log(`running host on :${PORT}`)
+    console.log(`running host on :${PORTLOCAL}`)
 )
 
 
