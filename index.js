@@ -15,7 +15,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use('/api', routes);
 
-const PORT = 8080;
+const PORTLOCAL = 8080;
 
 const mongoString = process.env.DATABASE_URL;
 mongoose.connect(mongoString);
@@ -32,7 +32,7 @@ database.once('connected', () => {
 
 
 app.listen(
-    PORT,
+    process.env.PORT || PORTLOCAL,
     console.log(`running host on :${PORT}`)
 )
 
