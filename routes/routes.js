@@ -6,7 +6,7 @@ require('dotenv').config();
 const router = express.Router();
 module.exports = router;
 
-router.post('/post', async (req, res) => {
+router.post('/signup', async (req, res) => {
     
     const data = new Model({
         name: req.body.name,
@@ -25,26 +25,26 @@ router.post('/post', async (req, res) => {
 })
 
 
-router.get('/getAll', async (req, res) => {
-    try {
-        const data = await Model.find();
-        res.json(data)
-    }
-    catch(error){
-        res.status(500).json({message: error.message})
-    }
-})
+// router.get('/getAll', async (req, res) => {
+//     try {
+//         const data = await Model.find();
+//         res.json(data)
+//     }
+//     catch(error){
+//         res.status(500).json({message: error.message})
+//     }
+// })
 
 
-router.get('/get', async (req, res) => {
-    try {
-        const data = await Model.findOne({name:req.body.name});
-        res.json(data)
-    }
-    catch(error){
-        res.status(500).json({message: error.message})
-    }
-})
+// router.get('/get', async (req, res) => {
+//     try {
+//         const data = await Model.findOne({name:req.body.name});
+//         res.json(data)
+//     }
+//     catch(error){
+//         res.status(500).json({message: error.message})
+//     }
+// })
 
 
 router.post('/login', async (req, res) => {
