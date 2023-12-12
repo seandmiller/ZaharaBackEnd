@@ -2,9 +2,15 @@ const express = require('express');
 const Model = require('../models/model');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
+const EnigmaEncrypt = require('../enigma');
+const cryptico = require('cryptico');
 require('dotenv').config();
 const router = express.Router();
 module.exports = router;
+
+var RSAkey = cryptico.generateRSAKey(process.env.PASS_PHRASE, parseInt(process.env.BITS));
+
+
 
 router.post('/signup', async (req, res) => {
     
@@ -86,6 +92,54 @@ router.patch('/update/:name', authenticateToken, async (req, res) => {
 res.send('failed to update')
  
 })
+
+router.patch('/messages/:name', authenticateToken, async (req, res) => {
+    
+    const encrypt = req.body.encrypt
+    let cycles = 0;
+    var PublicKeyString = cryptico.publicKeyString(RSAkey);
+
+    if (encrypt === true) {
+    var msgBody = req.body.messages
+    for (let i = 0; i < msgBody.length; i++) {
+        msgBody[i].content = new EnigmaEncrypt(msgBody[i].content, [1,2,3], cycles).enigma();
+        cycles = msgBody[i].content.length;
+        
+        msgBody[i].content = cryptico.encrypt(msgBody[i].content, PublicKeyString).cipher
+
+    }
+    const user = await Model.findOneAndUpdate({name:req.params.name}, {messages: msgBody} )
+    if (user) {
+        res.send(user.messages);
+       return;
+   
+    }
+   res.send('failed to update')
+   return; }
+
+
+   if (encrypt === false) {
+    const user = await Model.findOne({name:req.body.name})
+    if (user) {
+        var msgBody = user.messages;
+        
+        for (let i = 0; i < msgBody.length; i++) {
+            msgBody[i].content = cryptico.decrypt(msgBody[i].content, RSAkey).plaintext
+            
+            msgBody[i].content = new EnigmaEncrypt(msgBody[i].content, [1,2,3], cycles).enigma().toLocaleLowerCase();
+            cycles = msgBody[i].content.length
+        }
+
+        res.send(msgBody);
+        return;
+    }
+
+    res.send('failed to find user')
+   }
+
+
+
+   })
 
 
 router.delete('/delete/:name', authenticateToken, async (req, res) => {

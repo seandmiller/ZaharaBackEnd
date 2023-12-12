@@ -10,6 +10,10 @@ const dataSchema = new mongoose.Schema({
         required:false,
         type:Array
     },
+    messages:{
+        required:false,
+        type:Array
+    },
     hash : String,
     salt : String
 
