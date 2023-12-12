@@ -98,7 +98,7 @@ router.patch('/messages/:name', authenticateToken, async (req, res) => {
     const encrypt = req.body.encrypt
     let cycles = 0;
     var PublicKeyString = cryptico.publicKeyString(RSAkey);
-
+    console.log('the key')
     if (encrypt === true) {
     var msgBody = req.body.messages
     for (let i = 0; i < msgBody.length; i++) {
