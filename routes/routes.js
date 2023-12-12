@@ -93,30 +93,33 @@ res.send('failed to update')
  
 })
 
-router.patch('/messages/:name', authenticateToken, async (req, res) => {
+router.patch('/messages', authenticateToken, async (req, res) => {
     console.log('working')
     const encrypt = req.body.encrypt
     let cycles = 0;
-    var PublicKeyString = cryptico.publicKeyString(RSAkey);
+    var PublicKeyString = await cryptico.publicKeyString(RSAkey);
     console.log('the key')
+    
+    
     if (encrypt === true) {
+    const user = await Model.findOne({name:req.body.name})
+    if (user)    {
     var msgBody = req.body.messages
     for (let i = 0; i < msgBody.length; i++) {
         msgBody[i].content = new EnigmaEncrypt(msgBody[i].content, [1,2,3], cycles).enigma();
         cycles = msgBody[i].content.length;
         console.log('hello')
         msgBody[i].content = cryptico.encrypt(msgBody[i].content, PublicKeyString).cipher
-        console.log('there')
+        console.log('there')}
 
-    }
-    const user = await Model.findOneAndUpdate({name:req.params.name}, {messages: msgBody} )
-    if (user) {
-        res.send(user.messages);
-       return;
-   
-    }
-   res.send('failed to update')
-   return; }
+    const userMessage = await Model.findOneAndUpdate({name:req.body.name}, {messages: msgBody} );
+    res.send(userMessage.messages);
+    return;
+ }
+   res.send("Unable to find user");
+   return;
+
+ }
 
 
    if (encrypt === false) {
@@ -137,6 +140,7 @@ router.patch('/messages/:name', authenticateToken, async (req, res) => {
     }
 
     res.send('failed to find user')
+    return ;
    }
 
 
