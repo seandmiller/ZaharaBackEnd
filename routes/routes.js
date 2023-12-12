@@ -94,7 +94,7 @@ res.send('failed to update')
 })
 
 router.patch('/messages/:name', authenticateToken, async (req, res) => {
-    
+    console.log('working')
     const encrypt = req.body.encrypt
     let cycles = 0;
     var PublicKeyString = cryptico.publicKeyString(RSAkey);
