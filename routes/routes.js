@@ -106,12 +106,12 @@ router.patch('/messages', authenticateToken, async (req, res) => {
     if (user)    {
     var msgBody = req.body.messages
     for (let i = 0; i < msgBody.length; i++) {
-        console.log('before enigma')
+      
         msgBody[i].content = new EnigmaEncrypt(msgBody[i].content, [1,2,3], cycles).enigma();
         cycles = msgBody[i].content.length;
-        console.log('hello')
+    
         msgBody[i].content = await cryptico.encrypt(msgBody[i].content, PublicKeyString).cipher
-        console.log('there')}
+       }
 
     const userMessage = await Model.findOneAndUpdate({name:req.body.name}, {messages: msgBody} );
     res.send(userMessage.messages);
