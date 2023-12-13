@@ -131,6 +131,7 @@ router.patch('/messages', authenticateToken, async (req, res) => {
         for (let i = 0; i < msgBody.length; i++) {
             
             msgBody[i].content = cryptico.decrypt(msgBody[i].content, RSAkey).plaintext
+           
             
             msgBody[i].content = new EnigmaEncrypt(msgBody[i].content, [1,2,3], cycles).enigma().toLocaleLowerCase();
             cycles = msgBody[i].content.length

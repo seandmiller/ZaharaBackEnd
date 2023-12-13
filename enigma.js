@@ -24,7 +24,7 @@ this.plug          = {'A':'A', 'B':'B', 'C':'C', 'D':'D','E':'E',
                        'K':'K','L':'L','M':'M','N':'N','O':'O','P':'P',
                        'Q':'Q','R':'R','S':'S','T':'T','U':'U','V':'V',
                        'W':'W','X':'X','Y':'Y','Z':'Z','1':'1','2':'2',
-                       '3':'3','4':'4','5':'5','6':'6','7':'7','8':'8','9':'9','0':'0',' ':' ', '$':'$', '%':'%'};
+                       '3':'3','4':'4','5':'5','6':'6','7':'7','8':'8','9':'9','0':'0',' ':' ', '$':'$', '%':'%' };
 this.rotors = [this.rotorOne, this.rotorTwo, this.rotorThree, this.rotorFour, this.rotorFive]
 
 
@@ -68,7 +68,10 @@ rotate = (num,  rotor = this.rotorOne) =>  {
         
         for (let i = 0; i < this.text.length; i++) {
             var letter = this.text[i];
-            
+            if (!rotor1[0].includes(letter)) {
+             
+                continue
+            }
         
             letter = this.plug[letter];
         
