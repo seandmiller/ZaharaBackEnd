@@ -7,8 +7,8 @@ const app = express();
 
 
 var corsOptions = {
-    origin: ['http://localhost:3000', 'https://mentalhphelp.com'],
-    optionsSuccessStatus: 200 // For legacy browser support
+    origin: ['http://localhost:3000/', 'https://mentalhphelp.com'],
+    optionsSuccessStatus: 200 
     }
 
 
