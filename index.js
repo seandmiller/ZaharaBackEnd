@@ -7,7 +7,7 @@ const app = express();
 
 
 var corsOptions = {
-    origin: ['https://localhost:3000', 'https://mentalhphelp.com', 'http://127.0.0.1:3000','https://localhost:3000'],
+    origin: ['https://localhost:3000', 'https://mentalhphelp.com', 'http://127.0.0.1:3000'],
     optionsSuccessStatus: 200 
     }
 
