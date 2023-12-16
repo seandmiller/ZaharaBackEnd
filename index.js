@@ -8,7 +8,8 @@ const app = express();
 
 var corsOptions = {
     origin: ['http://localhost:3000', 'https://mentalhphelp.com', 'http://127.0.0.1:3000'],
-    optionsSuccessStatus: 200 
+    optionsSuccessStatus: 200 ,
+    credentials:true
     }
 
 
