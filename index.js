@@ -8,13 +8,13 @@ const app = express();
 
 var corsOptions = {
     origin: ['http://localhost:3000', 'https://mentalhphelp.com', 'http://127.0.0.1:3000'],
-    
+    methods:"GET,PUT,POST,DELETE,PATCH",
     credentials:true
 
     }
 
 app.options('*', cors(corsOptions));
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use('/api', routes);
