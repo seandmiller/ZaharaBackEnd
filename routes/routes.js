@@ -93,7 +93,7 @@ res.send('failed to update')
  
 })
 
-router.patch('/messages', authenticateToken, async (req, res) => {
+router.post('/messages', authenticateToken, async (req, res) => {
     
     const encrypt = req.body.encrypt
     let cycles = 0;
