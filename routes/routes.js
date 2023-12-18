@@ -117,8 +117,8 @@ router.patch('/messages', authenticateToken, async (req, res) => {
        }
 
     const userMessage = await Model.findOneAndUpdate({name:req.body.name}, {messages: msgBody} );
-    res.send(userMessage.messages);
-    return;
+    return res.status(200).json(userMessage.messages);
+    
  }
    return res.status(400).json({
     status:"unsuccessful",
@@ -142,8 +142,8 @@ router.patch('/messages', authenticateToken, async (req, res) => {
             cycles = msgBody[i].content.length
         }
 
-        res.status(200).json(msgBody);
-        return;
+       return res.status(200).json(msgBody);
+        
     }
 
     return res.status(400).json({err:'failed to find user'});
