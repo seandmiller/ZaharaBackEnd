@@ -7,7 +7,7 @@ const app = express();
 
 
 var corsOptions = {
-    origin: ['http://localhost:3000', 'https://mentalhphelp.com', 'http://127.0.0.1:3000'],
+    origin: ['http://localhost:3000', 'https://mentalhphelp.com', 'http://127.0.0.1:3000', '/\.herokuapp\.com$/'],
     methods:"GET,PUT,POST,DELETE,PATCH",
     credentials:true
 
