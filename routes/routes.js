@@ -88,7 +88,7 @@ router.patch('/update/:name', authenticateToken, async (req, res) => {
      res.status(200).json(user);
     return;
  }
- 
+
  return res.status(400).json({
     success: false,
     status: "unable to update",
@@ -142,12 +142,12 @@ router.patch('/messages', authenticateToken, async (req, res) => {
             cycles = msgBody[i].content.length
         }
 
-        res.send(msgBody);
+        res.status(200).json(msgBody);
         return;
     }
 
-    res.send('failed to find user')
-    return ;
+    return res.status(400).json({err:'failed to find user'});
+    
    }
 
 
