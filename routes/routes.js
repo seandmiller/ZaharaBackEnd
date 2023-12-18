@@ -149,6 +149,7 @@ router.patch('/messages', authenticateToken, async (req, res) => {
     return res.status(400).json({err:'failed to find user'});
     
    }
+   console.log('failure')
 
    return res.status(400).json({err:"no encryption found "})
 
