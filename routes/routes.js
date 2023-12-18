@@ -89,7 +89,7 @@ router.patch('/update/:name', authenticateToken, async (req, res) => {
     return;
 
  }
- res.status(401).json({
+ res.status(400).json({
     success: false,
     status: "unable to update",
     err: error,
