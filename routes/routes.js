@@ -85,11 +85,15 @@ router.patch('/update/:name', authenticateToken, async (req, res) => {
 
  const user = await Model.findOneAndUpdate({name:req.params.name}, {symptoms: req.body.symptoms} )
  if (user) {
-     res.send(user);
+     res.status(200).json(user);
     return;
 
  }
-res.send('failed to update')
+ res.status(401).json({
+    success: false,
+    status: "unable to update",
+    err: error,
+})
  
 })
 
