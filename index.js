@@ -22,7 +22,7 @@ app.use('/api', routes);
 const PORTLOCAL = 8080;
 
 const mongoString = process.env.DATABASE_URL;
-mongoose.connect(mongoString);
+mongoose.connect(mongoString, {ssl:false});
 const database = mongoose.connection;
 
 database.on('error', (error) => {
