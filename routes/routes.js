@@ -98,7 +98,7 @@ router.patch('/update/:name', authenticateToken, async (req, res) => {
 
 
 
-router.post('/messages', authenticateToken, async (req, res) => {
+router.post('/messages',  async (req, res) => {
     
     const encrypt = req.body.encrypt
     let cycles = 0;
@@ -135,10 +135,7 @@ router.post('/messages', authenticateToken, async (req, res) => {
         var msgBody = user.messages;
         
         for (let i = 0; i < msgBody.length; i++) {
-            
             msgBody[i].content = cryptico.decrypt(msgBody[i].content, RSAkey).plaintext
-           
-            
             msgBody[i].content = new EnigmaEncrypt(msgBody[i].content, [1,2,3], cycles).enigma().toLocaleLowerCase();
             cycles = msgBody[i].content.length
         }
@@ -152,8 +149,7 @@ router.post('/messages', authenticateToken, async (req, res) => {
         err:"Unable to find user"});
     
    }
-   console.log('failure')
-
+ 
    return res.sendStatus(400).json({err:"no encryption found option found "})
 
 
