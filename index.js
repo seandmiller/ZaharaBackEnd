@@ -9,7 +9,8 @@ const app = express();
 var corsOptions = {
     origin: ['http://localhost:3000','http://localhost:3000/' , 'https://mentalhphelp.com', 'https://quiet-lowlands-62573-2c3c77d42eb8.herokuapp.com', '/\.herokuapp\.com$/'],
     methods:"GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
-    optionsSuccessStatus: 204
+    optionsSuccessStatus: 204,
+    credentials: true,
   
     
 
