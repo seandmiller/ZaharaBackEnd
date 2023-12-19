@@ -142,11 +142,11 @@ router.patch('/messages', authenticateToken, async (req, res) => {
             cycles = msgBody[i].content.length
         }
 
-       return res.sendStatus(200).json(msgBody);
+       return res.status(200).json(msgBody);
         
     }
 
-    return res.sendStatus(400).json({err:'failed to find user'});
+    return res.status(400).json({err:'failed to find user'});
     
    }
    console.log('failure')
