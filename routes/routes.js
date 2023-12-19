@@ -142,16 +142,16 @@ router.patch('/messages', authenticateToken, async (req, res) => {
             cycles = msgBody[i].content.length
         }
 
-       return res.status(200).json(msgBody);
+       return res.sendStatus(200).json(msgBody);
         
     }
 
-    return res.status(400).json({err:'failed to find user'});
+    return res.sendStatus(400).json({err:'failed to find user'});
     
    }
    console.log('failure')
 
-   return res.status(400).json({err:"no encryption found "})
+   return res.sendStatus(400).json({err:"no encryption found "})
 
 
 
@@ -171,7 +171,7 @@ router.delete('/delete/:name', authenticateToken, async (req, res) => {
 })
 
 function authenticateToken(req,res, next) {
-    const authHeader = req.headers['authorization']
+    const authHeader = req.headers['Authorization']
     const token = authHeader && authHeader.split(' ')[1]
     if (token == null) {return res.sendStatus(401)}
 
