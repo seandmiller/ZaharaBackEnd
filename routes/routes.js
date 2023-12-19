@@ -125,7 +125,6 @@ router.post('/messages', authenticateToken, async (req, res) => {
    return res.status(400).json({
     status:"unsuccessful",
     err:"Unable to find user"});
-   
 
  }
 
@@ -148,12 +147,14 @@ router.post('/messages', authenticateToken, async (req, res) => {
         
     }
 
-    return res.status(400).json({err:'failed to find user'});
+    return res.status(400).json({
+        status:"unsuccessful",
+        err:"Unable to find user"});
     
    }
    console.log('failure')
 
-   return res.sendStatus(400).json({err:"no encryption found "})
+   return res.sendStatus(400).json({err:"no encryption found option found "})
 
 
 
