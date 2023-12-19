@@ -98,7 +98,7 @@ router.patch('/update/:name', authenticateToken, async (req, res) => {
 
 
 
-router.post('/messages',  async (req, res) => {
+router.post('/messages', authenticateToken, async (req, res) => {
     
     const encrypt = req.body.encrypt
     let cycles = 0;
