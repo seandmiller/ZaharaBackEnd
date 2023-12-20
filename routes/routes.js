@@ -180,6 +180,6 @@ function authenticateToken(req,res, next) {
         next()
 
     });
-    next()
+  
 
 }
