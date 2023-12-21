@@ -31,27 +31,6 @@ router.post('/signup', async (req, res) => {
 })
 
 
-// router.get('/getAll', async (req, res) => {
-//     try {
-//         const data = await Model.find();
-//         res.json(data)
-//     }
-//     catch(error){
-//         res.status(500).json({message: error.message})
-//     }
-// })
-
-
-// router.get('/get', async (req, res) => {
-//     try {
-//         const data = await Model.findOne({name:req.body.name});
-//         res.json(data)
-//     }
-//     catch(error){
-//         res.status(500).json({message: error.message})
-//     }
-// })
-
 
 router.post('/login', async (req, res) => {
     async function getUser(obj) {
@@ -81,7 +60,7 @@ router.post('/login', async (req, res) => {
 })
 
 
-router.patch('/update/:name', authenticateToken, async (req, res) => {
+router.post('/update/:name', authenticateToken, async (req, res) => {
 
  const user = await Model.findOneAndUpdate({name:req.params.name}, {symptoms: req.body.symptoms} )
  if (user) {
