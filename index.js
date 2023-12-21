@@ -16,10 +16,10 @@ var corsOptions = {
 
     }
 
-
+app.options('*', cors());
 app.use(cors(corsOptions));
 
-app.options('*', cors(corsOptions));
+
 
 // app.use(function(req, res, next) {
 //     res.setHeader('Access-Control-Allow-Origin', corsOptions.origin);
