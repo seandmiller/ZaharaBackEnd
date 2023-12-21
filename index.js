@@ -18,6 +18,9 @@ var corsOptions = {
 
 
 app.use(cors(corsOptions));
+
+app.options('*', cors(corsOptions));
+
 // app.use(function(req, res, next) {
 //     res.setHeader('Access-Control-Allow-Origin', corsOptions.origin);
 //     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
