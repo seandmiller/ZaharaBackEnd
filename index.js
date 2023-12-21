@@ -11,7 +11,8 @@ var corsOptions = {
     
     optionsSuccessStatus: 200,
     credentials: true,
-    preflightContinue:true
+    preflightContinue:true,
+    maxAge:1
   
     
 
