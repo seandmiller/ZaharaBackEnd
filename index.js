@@ -16,7 +16,7 @@ var corsOptions = {
 
     }
 
-app.options('*', cors());
+
 app.use(cors(corsOptions));
 
 
@@ -35,7 +35,7 @@ app.use(cors(corsOptions));
 // });
 app.use(express.json());
 app.use('/api', routes);
-
+app.options('*', cors());
 const PORTLOCAL = 8080;
 
 const mongoString = process.env.DATABASE_URL;
